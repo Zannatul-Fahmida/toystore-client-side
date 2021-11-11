@@ -13,7 +13,7 @@ const Toy = (props) => {
                     <Card.Text className="text-secondary">{description}</Card.Text>
                     <Card.Text className="fw-bold">$ {price}</Card.Text>
                     <Link to={`/purchase/${_id}`}>
-                        <Button variant="warning">Buy Now</Button>
+                        <Button variant="warning">Place Order</Button>
                     </Link>
                 </Card.Body>
             </Card>

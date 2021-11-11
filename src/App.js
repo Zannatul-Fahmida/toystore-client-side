@@ -12,6 +12,8 @@ import Header from './pages/Shared/Header/Header';
 import Purchase from './pages/Purchase/Purchase';
 import MoreToys from './pages/MoreToys/MoreToys';
 import AuthProvider from './contexts/AuthProvider';
+import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
+import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -29,12 +31,15 @@ function App() {
             <Route path="/moreToys">
               <MoreToys></MoreToys>
             </Route>
-            <Route path="/purchase/:id">
+            <PrivateRoute path="/purchase/:toyId">
               <Purchase></Purchase>
-            </Route>
+            </PrivateRoute>
             <Route path="/login">
               <Login></Login>
             </Route>
+            <PrivateRoute path="/dashboard">
+              <Dashboard></Dashboard>
+            </PrivateRoute>
             <Route path="/signup">
               <Signup></Signup>
             </Route>
