@@ -31,9 +31,9 @@ const AddReview = () => {
         e.preventDefault();
     }
     return (
-        <Container className="d-flex flex-column align-items-center my-5">
+        <Container className="d-flex flex-column align-items-center my-5 my-md-0">
             <h2 className="mb-3">Add A Review</h2>
-            <Form onSubmit={handleAddReview} className="d-flex flex-column justify-content-center w-50">
+            <Form onSubmit={handleAddReview} className="d-flex flex-column justify-content-center col-md-6 col-12">
                 <Form.Control className="mb-2" type="text" ref={nameRef} placeholder="Your name" defaultValue={user?.displayName} />
                 <Form.Control className="mb-2" type="text" ref={imgRef} placeholder="Review item image URL" />
                 <Form.Control as="textarea" className="mb-2" ref={reviewRef} placeholder="review" />

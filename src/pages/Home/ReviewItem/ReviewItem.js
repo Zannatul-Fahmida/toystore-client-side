@@ -4,7 +4,6 @@ import ReactStars from "react-rating-stars-component";
 
 const ReviewItem = (props) => {
     const { name, review, rating, img } = props.review;
-    console.log(name);
     return (
         <Col>
             <Card className="shadow h-100">

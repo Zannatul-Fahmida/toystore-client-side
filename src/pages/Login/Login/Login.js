@@ -1,65 +1,66 @@
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { Container, Form, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import { useHistory, useLocation } from 'react-router';
 
 const Login = () => {
-    const { setUser, setError, setUserName, signInUsingGoogle, handleEmail, handlePassword, logInWithEmailAndPassword, error } = useAuth();
+    const [loginData, setLoginData] = useState({});
+    const { logInWithEmailAndPassword, error, signInUsingGoogle } = useAuth();
     const location = useLocation();
     const history = useHistory();
-    const redirect_uri = location.state?.from || '/home';
 
-    const handleGoogleLogin = () => {
-        signInUsingGoogle()
-            .then(result => {
-                history.push(redirect_uri);
-            })
+    const handleOnChange = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
     }
-
-    const handleEmailAndPasswordLogin = () => {
-        logInWithEmailAndPassword()
-            .then(result => {
-                setUser(result.user);
-                setError('');
-                setUserName();
-                history.push(redirect_uri);
-            })
+    const handleLoginSubmit = e => {
+        logInWithEmailAndPassword(loginData.email, loginData.password, location, history);
+        e.preventDefault();
     }
+    const handleGoogleLogin = (location, history) => {
+        signInUsingGoogle();
+    }
+    console.log(loginData);
     return (
-            <Container className="mt-5">
-                <Form>
-                    <div className="d-flex flex-column align-items-center">
-                        <div className="text-center col-8 col-md-6">
-                            <h1 className="fw-bold mb-4">Toy <span className="text-warning">Store</span></h1>
-                        </div>
-                        <Form.Floating onBlur={handleEmail} className="mb-3 col-12 col-md-6">
-                            <Form.Control
-                                id="floatingInputCustom1"
-                                type="email"
-                                placeholder="name@example.com"
-                            />
-                            <label htmlFor="floatingInputCustom1">Email address</label>
-                        </Form.Floating>
-                        <Form.Floating onBlur={handlePassword} className="mb-3 col-12 col-md-6">
-                            <Form.Control
-                                id="floatingPasswordCustom1"
-                                type="password"
-                                placeholder="Password"
-                            />
-                            <label htmlFor="floatingPasswordCustom1">Password</label>
-                        </Form.Floating>
-                        <Button className="col-12 col-md-6 py-3" variant="warning" onClick={handleEmailAndPasswordLogin}>Log in</Button>
-                        <div className="text-center col-12 col-md-6 mt-4">
-                            <p className="text-danger">{error}</p>
-                            <p>Don't have an account?? <Link to="/signup" className="text-decoration-none fw-bold text-dark">Sign Up</Link></p>
-                            <Button variant="primary" onClick={handleGoogleLogin}><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Sign in with google</Button>
-                        </div>
+        <Container className="mt-5">
+            <Form onSubmit={handleLoginSubmit}>
+                <div className="d-flex flex-column align-items-center">
+                    <div className="text-center col-8 col-md-6">
+                        <h1 className="fw-bold mb-4">Toy <span className="text-warning">Store</span></h1>
                     </div>
-                </Form>
-            </Container>
+                    <Form.Floating onChange={handleOnChange} className="mb-3 col-12 col-md-6">
+                        <Form.Control
+                            id="floatingInputCustom1"
+                            type="email"
+                            name="email"
+                            placeholder="name@example.com"
+                        />
+                        <label htmlFor="floatingInputCustom1">Email address</label>
+                    </Form.Floating>
+                    <Form.Floating onChange={handleOnChange} className="mb-3 col-12 col-md-6">
+                        <Form.Control
+                            id="floatingPasswordCustom1"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                        />
+                        <label htmlFor="floatingPasswordCustom1">Password</label>
+                    </Form.Floating>
+                    <Button className="col-12 col-md-6 py-3" variant="warning" type="submit">Log in</Button>
+                    <div className="text-center col-12 col-md-6 mt-4">
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <p>Don't have an account?? <Link to="/signup" className="text-decoration-none fw-bold text-dark">Sign Up</Link></p>
+                        <Button variant="primary" onClick={handleGoogleLogin}><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon> Sign in with google</Button>
+                    </div>
+                </div>
+            </Form>
+        </Container>
     );
 };
 

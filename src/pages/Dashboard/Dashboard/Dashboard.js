@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Nav, Row, Tab } from 'react-bootstrap';
 import useAuth from '../../../hooks/useAuth';
 import AddReview from '../AddReview/AddReview';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import MyOrders from '../MyOrders/MyOrders';
 import Pay from '../Pay/Pay';
 
@@ -24,6 +25,9 @@ const Dashboard = () => {
                         <Nav.Item>
                             <Nav.Link onClick={logOut} eventKey="fourth">Log Out</Nav.Link>
                         </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="fifth">Make Admin</Nav.Link>
+                        </Nav.Item>
                     </Nav>
                 </Col>
                 <Col sm={12} md={9}>
@@ -36,6 +40,9 @@ const Dashboard = () => {
                         </Tab.Pane>
                         <Tab.Pane eventKey="third">
                             <AddReview></AddReview>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="fifth">
+                            <MakeAdmin></MakeAdmin>
                         </Tab.Pane>
                     </Tab.Content>
                 </Col>

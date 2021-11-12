@@ -9,9 +9,7 @@ const MyOrders = () => {
     useEffect(() => {
         fetch(`https://frozen-hollows-26442.herokuapp.com/myOrders/${user.email}`)
             .then(res => res.json())
-            .then(data => {setMyOrders(data)
-            console.log(data)
-            })
+            .then(data => setMyOrders(data))
     }, [user.email]);
     return (
         <Container className="my-4 text-center">

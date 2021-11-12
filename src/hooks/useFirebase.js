@@ -7,19 +7,68 @@ initializeFirebase();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
-    const [name, setName] = useState('');
     const [error, setError] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [admin, setAdmin] = useState(false);
+
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
-    const signInUsingGoogle = () => {
-        return signInWithPopup(auth, googleProvider)
+    const signInUsingGoogle = (location, history) => {
+        setIsLoading(true);
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                const user = result.user;
+                saveUser(user.email, user.displayName, 'PUT');
+                setError('');
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+            }).catch((error) => {
+                setError(error.message);
+            }).finally(() => setIsLoading(false));
+    }
+
+    const logInWithEmailAndPassword = (email, password, location, history) => {
+        setIsLoading(true);
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+                setError('');
+            })
+            .catch((error) => {
+                setError(error.message);
+            })
             .finally(() => setIsLoading(false));
     }
+    const signUpWithEmailAndPassword = (email, password, name, history) => {
+        setIsLoading(true);
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                setError('');
+                const newUser = { email, displayName: name };
+                setUser(newUser);
+                //Save user to the database
+                saveUser(email, name, 'POST');
+                // send name to firebase after creation
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                }).catch((error) => {
+                });
+                history.replace('/');
+            })
+            .catch((error) => {
+                setError(error.message);
+            })
+            .finally(() => setIsLoading(false));
+    }
+
+    useEffect(() => {
+        fetch(`https://frozen-hollows-26442.herokuapp.com/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
 
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -32,7 +81,8 @@ const useFirebase = () => {
             setIsLoading(false);
         });
         return () => unsubscribed;
-    }, [])
+    }, [auth])
+
 
     const logOut = () => {
         setIsLoading(true);
@@ -40,57 +90,28 @@ const useFirebase = () => {
             .then(() => { })
             .finally(() => setIsLoading(false));
     }
-    const handleName = e => {
-        setName(e.target.value);
-    }
-    const handleEmail = e => {
-        setEmail(e.target.value);
-    }
-    const handlePassword = e => {
-        setPassword(e.target.value);
-    }
-    const handleConfirmPassword = e => {
-        setConfirmPassword(e.target.value);
-        if (password === confirmPassword) {
-            setPassword(password);
-        }
-        else {
-            setError("Confirm password doesn't match")
-        }
-    }
-    const logInWithEmailAndPassword = () => {
-        return signInWithEmailAndPassword(auth, email, password)
-            .catch(error => {
-                setError(error.message);
-            })
-    }
-    const signUpWithEmailAndPassword = () => {
-        return createUserWithEmailAndPassword(auth, email, password)
-            .catch(error => {
-                setError(error.message);
-            })
 
-    }
-    const setUserName = () => {
-        updateProfile(auth.currentUser, { displayName: name })
-            .then(result => { })
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('https://frozen-hollows-26442.herokuapp.com/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
     }
 
     return {
         user,
+        admin,
         error,
         isLoading,
         signInUsingGoogle,
         logOut,
-        handleEmail,
-        handleName,
-        handlePassword,
         logInWithEmailAndPassword,
-        signUpWithEmailAndPassword,
-        handleConfirmPassword,
-        setUserName,
-        setError,
-        setUser
+        signUpWithEmailAndPassword
     }
 }
 
