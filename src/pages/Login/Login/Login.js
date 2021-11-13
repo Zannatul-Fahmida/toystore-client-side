@@ -65,12 +65,3 @@ const Login = () => {
 };
 
 export default Login;
-// It is a soft toy. Kids love to play with soft toys. soft toy is a toy doll with an outer fabric sewn from a textile and stuffed with flexible material.
-// A toy is an item that is used primarily by children though may also be marketed to adults under certain circumstances.
-
-
-
-
-// superman   https://i.ibb.co/SnjRpGF/pexels-erik-mclean-7258495.jpg
-// red car    https://i.ibb.co/JQtQZV2/pexels-kristina-paukshtite-3444345.jpg
-// yellow bus   https://i.ibb.co/vkTKfYK/pexels-nubia-navarro-nubikini-386025.jpg

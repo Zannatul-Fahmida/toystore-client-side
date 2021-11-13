@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FloatingLabel, Button, Form, Alert, } from 'react-bootstrap';
+import { FloatingLabel, Button, Form, Alert } from 'react-bootstrap';
 
 const MakeAdmin = () => {
     const [email, setEmail] = useState('');
@@ -26,9 +26,9 @@ const MakeAdmin = () => {
         e.preventDefault();
     }
     return (
-        <div className="d-flex flex-column align-items-center my-5 my-md-0">
-            <h2 className="mb-3">Make An Admin</h2>
-            <form onSubmit={handleAdminSubmit} className="w-100 d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center my-5">
+            <h2 className="mb-3 fw-bold">Make An Admin</h2>
+            <Form onSubmit={handleAdminSubmit} className="w-100 d-flex flex-column align-items-center">
                 <FloatingLabel
                     onBlur={handleOnBlur}
                     controlId="floatingInput"
@@ -37,8 +37,8 @@ const MakeAdmin = () => {
                 >
                     <Form.Control type="email" placeholder="name@example.com" />
                 </FloatingLabel>
-                <Button variant="warning" type="submit" className="col-12 col-md-6">Make Admin</Button>
-            </form>
+                <Button variant="warning" type="submit" className="col-12 col-md-6 py-3">Make Admin</Button>
+            </Form>
             {success && <Alert variant="success" className="mt-3 col-12 col-md-6">Made admin successfully!</Alert>}
         </div>
     );
