@@ -20,9 +20,9 @@ const useFirebase = () => {
             .then((result) => {
                 const user = result.user;
                 saveUser(user.email, user.displayName, 'PUT');
-                setError('');
                 const destination = location?.state?.from || '/';
                 history.replace(destination);
+                setError('');
             }).catch((error) => {
                 setError(error.message);
             }).finally(() => setIsLoading(false));

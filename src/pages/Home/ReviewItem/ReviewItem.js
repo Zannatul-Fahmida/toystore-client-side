@@ -7,7 +7,7 @@ const ReviewItem = (props) => {
     return (
         <Col>
             <Card className="shadow h-100">
-                <Card.Img variant="top" src={img} />
+                <Card.Img variant="top" src={img} height="200" />
                 <Card.Body className="text-start">
                     <Card.Title>{name}</Card.Title>
                     <Card.Text className="text-secondary mb-0">{review}</Card.Text>

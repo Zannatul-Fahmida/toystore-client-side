@@ -24,7 +24,7 @@ const OrderedToys = (props) => {
     return (
         <Col>
             <Card className="shadow h-100">
-                <Card.Img variant="top" src={toyImg} />
+                <Card.Img variant="top" src={toyImg} height="250" />
                 <Card.Body>
                     <Card.Title>{toyName}</Card.Title>
                     <Card.Text className="text-secondary">$ {toyPrice}</Card.Text>

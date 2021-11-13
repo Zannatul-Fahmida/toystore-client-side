@@ -23,8 +23,8 @@ const Login = () => {
         logInWithEmailAndPassword(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
-    const handleGoogleLogin = (location, history) => {
-        signInUsingGoogle();
+    const handleGoogleLogin = () => {
+        signInUsingGoogle(location, history);
     }
     console.log(loginData);
     return (

@@ -14,6 +14,7 @@ import MoreToys from './pages/MoreToys/MoreToys';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
             </PrivateRoute>
             <Route path="/signup">
               <Signup></Signup>
+            </Route>
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
         </Router>
