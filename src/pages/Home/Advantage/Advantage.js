@@ -8,7 +8,7 @@ const Advantage = () => {
         <div className="bg-dark">
             <Container className="py-5">
                 <Row>
-                    <Col className="d-flex align-items-center justify-content-between">
+                    <Col className="d-flex align-items-center justify-content-evenly justify-content-md-between col-12 col-md-3">
                         <div>
                             <FontAwesomeIcon className="fs-1 text-warning" icon={faHourglassHalf} />
                         </div>
@@ -17,7 +17,7 @@ const Advantage = () => {
                             <p className="mb-0">Free shipping on all UK orders</p>
                         </div>
                     </Col>
-                    <Col className="d-flex align-items-center justify-content-between">
+                    <Col className="d-flex align-items-center my-2 my-md-0 justify-content-evenly justify-content-md-between col-12 col-md-3">
                         <div>
                         <FontAwesomeIcon className="fs-1 text-warning" icon={faCertificate} />
                         </div>
@@ -26,7 +26,7 @@ const Advantage = () => {
                             <p className="mb-0">Free shipping on all UK orders</p>
                         </div>
                     </Col>
-                    <Col className="d-flex align-items-center justify-content-between">
+                    <Col className="d-flex align-items-center my-2 my-md-0 justify-content-evenly justify-content-md-between col-12 col-md-3">
                         <div>
                         <FontAwesomeIcon className="fs-1 text-warning" icon={faGlobeAmericas} />
                         </div>
@@ -35,7 +35,7 @@ const Advantage = () => {
                             <p className="mb-0">Free shipping on all UK orders</p>
                         </div>
                     </Col>
-                    <Col className="d-flex align-items-center justify-content-between">
+                    <Col className="d-flex align-items-center justify-content-evenly justify-content-md-between col-12 col-md-3">
                         <div>
                         <FontAwesomeIcon className="fs-1 text-warning" icon={faCar} />
                         </div>
