@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Image, Table, Button, Row, Spinner } from 'react-bootstrap';
+import { Container, Button, Row, Spinner } from 'react-bootstrap';
 import AllToys from '../AllToys/AllToys';
 
 const ManageToys = () => {
