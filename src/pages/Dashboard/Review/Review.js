@@ -24,6 +24,7 @@ const Reviews = (props) => {
                     }
                 })
         }
+        console.log(proceed)
     }
     return (
         <Col>

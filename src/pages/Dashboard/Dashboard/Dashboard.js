@@ -33,9 +33,9 @@ const Dashboard = () => {
                             <Nav.Item>
                                 <Nav.Link as={Link} eventKey="second" to={`${url}/myOrders`}>My Orders</Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
+                            {/* <Nav.Item>
                                 <Nav.Link as={Link} eventKey="third" to={`${url}/review`}>Review</Nav.Link>
-                            </Nav.Item>
+                            </Nav.Item> */}
                         </>}
                         {admin && <>
                             <Nav.Item>
@@ -50,9 +50,9 @@ const Dashboard = () => {
                             <Nav.Item>
                                 <Nav.Link as={Link} eventKey="eighth" to={`${url}/manageToys`}>Manage Toys</Nav.Link>
                             </Nav.Item>
-                            <Nav.Item>
+                            {/* <Nav.Item>
                                 <Nav.Link as={Link} eventKey="ninth" to={`${url}/manageReviews`}>Manage Reviews</Nav.Link>
-                            </Nav.Item>
+                            </Nav.Item> */}
                         </>}
                         <Nav.Item>
                             <Nav.Link onClick={logOut} eventKey="fourth">Log Out</Nav.Link>
@@ -85,9 +85,9 @@ const Dashboard = () => {
                         <AdminRoute exact path={`${path}/manageToys`}>
                             <ManageToys></ManageToys>
                         </AdminRoute>
-                        <AdminRoute exact path={`${path}/manageReviews`}>
+                        {/* <AdminRoute exact path={`${path}/manageReviews`}>
                             <ReviewManage></ReviewManage>
-                        </AdminRoute>
+                        </AdminRoute> */}
                     </Switch>
                 </Col>
             </Row>
