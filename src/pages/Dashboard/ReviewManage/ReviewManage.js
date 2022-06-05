@@ -14,7 +14,7 @@ const ReviewManage = () => {
     console.log(reviews);
     return (
         <Container className="my-4 text-center">
-            <h2 className="mb-4 fw-bold">Manage Toys</h2>
+            <h2 className="mb-4 fw-bold">Manage Reviews</h2>
             {
                 reviews.length > 0 ?
                     <Row xs={1} md={3} className="g-4">
