@@ -11,7 +11,6 @@ const ReviewManage = () => {
             .then(data => setReviews(data))
     }, []);
     
-    console.log(reviews);
     return (
         <Container className="my-4 text-center">
             <h2 className="mb-4 fw-bold">Manage Reviews</h2>
