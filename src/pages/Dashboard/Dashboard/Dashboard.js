@@ -15,6 +15,7 @@ import AllOrders from '../AllOrders/AllOrders';
 import AddToy from '../AddToy/AddToy';
 import ManageToys from '../ManageToys/ManageToys';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import ReviewManage from '../ReviewManage/ReviewManage';
 
 const Dashboard = () => {
     const { logOut, admin } = useAuth();
@@ -49,6 +50,9 @@ const Dashboard = () => {
                             <Nav.Item>
                                 <Nav.Link as={Link} eventKey="eighth" to={`${url}/manageToys`}>Manage Toys</Nav.Link>
                             </Nav.Item>
+                            <Nav.Item>
+                                <Nav.Link as={Link} eventKey="ninth" to={`${url}/manageReviews`}>Manage Reviews</Nav.Link>
+                            </Nav.Item>
                         </>}
                         <Nav.Item>
                             <Nav.Link onClick={logOut} eventKey="fourth">Log Out</Nav.Link>
@@ -80,6 +84,9 @@ const Dashboard = () => {
                         </AdminRoute>
                         <AdminRoute exact path={`${path}/manageToys`}>
                             <ManageToys></ManageToys>
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/manageReviews`}>
+                            <ReviewManage></ReviewManage>
                         </AdminRoute>
                     </Switch>
                 </Col>
